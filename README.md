@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Minesweeper Solver
 
-## Getting Started
+This project consists of a React frontend and a Python FastAPI backend that work together to visualize an AI solving Minesweeper puzzles.
+![Minesweeper Demo](minesweeper_gif.gif)
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## AI Algorithm
+My minesweeper solver uses a multitude of different strategies listed below:
+- Uses set pair subtraction and division to find guaranteed solutions
+   - This video helps explain how to implement this algorithm: [How do you solve Minesweeper?](https://www.youtube.com/watch?v=8j7bkNXNx4M&t=556s)
+- Uses forward checking and backtracking to find probability of tiles being safe or bombs
+- When no moves are guaranteed, uses a baysian tree algorithm to balance probability of a move being safe and the amount of information it will provide. This is a utilization ratio heuristic
+- When the frontiers grow large, limit the time spent on calculating all probabilities and make predictions on estimated probabilities
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
+- Generate Minesweeper puzzles with different difficulty levels and sizes
+- Watch the AI solve the puzzles step by step
+- Control playback speed and navigate through moves
+- View the outcome of each puzzle (win/lose)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `frontend/`: Next.js React application
+- `backend/`: FastAPI Python application with the Minesweeper solver
 
-## Learn More
+## Setup Instructions
 
-To learn more about Next.js, take a look at the following resources:
+### Using Docker Compose (Recommended)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Make sure you have Docker and Docker Compose installed
+2. Clone this repository
+3. Run `docker-compose up` in the root directory
+4. Access the application at http://localhost:3000
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Manual Setup
 
-## Deploy on Vercel
+#### Backend
+1. Navigate to the `backend/` directory
+2. Create a virtual environment: `python -m venv venv`
+3. Activate the virtual environment:
+   - Windows: `venv\Scripts\activate`
+   - macOS/Linux: `source venv/bin/activate`
+4. Install dependencies: `pip install -r requirements.txt`
+5. Run the server: `uvicorn main:app --reload`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#### Frontend
+1. Make sure you have Node.js installed
+2. Navigate to the root directory
+3. Install dependencies: `npm install`
+4. Set the API_URL environment variable to point to your backend
+5. Run the development server: `npm run dev`
