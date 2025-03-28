@@ -1,6 +1,8 @@
 # Minesweeper Solver
 
 This project consists of a React frontend and a Python FastAPI backend that work together to visualize an AI solving Minesweeper puzzles.
+
+
 ![Minesweeper Demo](minesweeper_gif.gif)
 
 
