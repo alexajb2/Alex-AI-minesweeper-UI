@@ -11,7 +11,7 @@ My minesweeper solver uses a multitude of different strategies listed below:
 - Uses set pair subtraction and division to find guaranteed solutions
    - This video helps explain how to implement this algorithm: [How do you solve Minesweeper?](https://www.youtube.com/watch?v=8j7bkNXNx4M&t=556s)
 - Uses forward checking and backtracking to find probability of tiles being safe or bombs
-- When no moves are guaranteed, uses a baysian tree algorithm to balance probability of a move being safe and the amount of information it will provide. This is a utilization ratio heuristic
+- When no moves are guaranteed, uses a baysian tree algorithm to balance probability of a move being safe and the amount of information it will provide. This is incorporated alongside the amount of new information an action will provide to make a utilization ratio heuristic
 - When the frontiers grow large, limit the time spent on calculating all probabilities and make predictions on estimated probabilities
 
 ## Features
